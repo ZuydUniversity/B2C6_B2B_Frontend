@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f9f1ee;
+}
+
+.notes-container {
+  flex-grow: 1; /* Zorgt ervoor dat de notitiescontainer de resterende ruimte inneemt */
+  width: 100%; /* Zorg ervoor dat de notitiescontainer de volledige breedte inneemt */
+  max-width: 800px; /* Stel een maximale breedte in om te voorkomen dat de inhoud te breed wordt */
+  margin: 10px auto; /* Voeg wat marge toe om de inhoud te scheiden van de randen van het scherm en zet de linker- en rechtermarge op automatisch om het gecentreerd te houden */
+}
+
+.notes-list {
+  width: 100%;
+  height: 100px; /* Hoogte van de notities container */
+}
+
+.note-form {
+  width: 100%;
+  height: 100px; /* Verhoog de hoogte naar wens */
+}
+
+textarea.form-control {
+  width: 100%;
+  height: 100%; /* Laat de hoogte van de textarea de volledige hoogte van de notitiescontainer innemen */
+  resize: vertical; /* Stel in dat alleen de hoogte kan worden gewijzigd */
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+}
