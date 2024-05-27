@@ -25,17 +25,17 @@ db.connect((err) => {
 
 // API route to add a note
 app.post('/add-note', (req, res) => {
-  const note = req.body.note;
-  if (!note) {
-    return res.status(400).json({ error: 'Note content is required' });
+  const description = req.body.description;
+  if (!description) {
+    return res.status(400).json({ error: 'Note description is required' });
   }
   const query = 'INSERT INTO notes (data) VALUES (?)';
-  db.query(query, [note], (err, result) => {
+  db.query(query, [description], (err, result) => {
     if (err) {
       console.error('Error saving note:', err);
       return res.status(500).json({ error: 'Failed to save note' });
     }
-    res.status(201).json({ id: result.insertId, data: note });
+    res.status(201).json({ id: result.insertId, description: description, date: new Date() });
   });
 });
 

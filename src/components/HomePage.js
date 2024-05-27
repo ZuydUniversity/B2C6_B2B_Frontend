@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './HomePage.css';
 
+// Importeren van de Note type
+/**
+ * @typedef {import('./types/note').Note} Note
+ */
+
 const HomePage = ({ user }) => {
   const [notes, setNotes] = useState(user.notes);
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +25,7 @@ const HomePage = ({ user }) => {
 
   useEffect(() => {
     const filtered = notes.filter(note =>
-      note.data.toLowerCase().includes(searchTerm.toLowerCase())
+      note.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredNotes(filtered);
   }, [searchTerm, notes]);
@@ -38,11 +43,11 @@ const HomePage = ({ user }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const note = event.target.note.value;
+    const noteDescription = event.target.note.value;
     const response = await fetch('/add-note', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ note })
+      body: JSON.stringify({ description: noteDescription })
     });
     const newNoteData = await response.json();
     setNotes([...notes, newNoteData]);
@@ -79,9 +84,9 @@ const HomePage = ({ user }) => {
         <div className="notes-list">
           <h3>Notities</h3>
           <div className="notes">
-            {filteredNotes.map(note => (
+            {filteredNotes.map((note) => (
               <div key={note.id} className="note-item">
-                <p>{note.data}</p>
+                <p>{note.description}</p>
                 <p>{note.date}</p>
                 <button type="button" className="btn btn-danger" onClick={() => deleteNote(note.id)}>Verwijderen</button>
               </div>
