@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; // Import icons
+import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import './Login.css';
+import axios from 'axios';
 
 const LoginForm = () => {
-  const [PersoneelsNummer, setPersoneelsNummer] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Wachtwoord, setWachtwoord] = useState('');
+  const [personeelsnummer, setPersoneelsnummer] = useState('');
+  const [email, setEmail] = useState('');
+  const [wachtwoord, setWachtwoord] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
+    try {
+      const response = await axios.post('http://localhost:5000/login', { email, wachtwoord });
+      setMessage(response.data.message);
+    } catch (error) {
+      setMessage(error.response?.data?.message || 'Something went wrong');
+    }
   };
 
   return (
@@ -24,19 +31,19 @@ const LoginForm = () => {
             <FaUser className="icon" />
             <input
               type="text"
-              id="PersoneelsNummer"
+              id="personeelsnummer"
               placeholder="Je personeelsnummer"
-              value={PersoneelsNummer}
-              onChange={(event) => setPersoneelsNummer(event.target.value)}
+              value={personeelsnummer}
+              onChange={(event) => setPersoneelsnummer(event.target.value)}
             />
           </div>
           <div className="form-group">
             <FaEnvelope className="icon" />
             <input
               type="email"
-              id="Email"
+              id="email"
               placeholder="Je login of e-mailadres"
-              value={Email}
+              value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
           </div>
@@ -44,9 +51,9 @@ const LoginForm = () => {
             <FaLock className="icon" />
             <input
               type="password"
-              id="Wachtwoord"
+              id="wachtwoord"
               placeholder="Wachtwoord"
-              value={Wachtwoord}
+              value={wachtwoord}
               onChange={(event) => setWachtwoord(event.target.value)}
             />
           </div>
@@ -62,7 +69,7 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-      <img className="image-container"src="/Kinderen.png" alt="Kinderen" height={700}/>
+      <img className="image-container" src="/Kinderen.png" alt="Kinderen" height={700} />
     </div>
   );
 };
