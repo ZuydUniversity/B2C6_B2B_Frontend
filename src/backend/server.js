@@ -2,7 +2,8 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 5000;
+const port = 5001;
+
 
 // Middleware
 app.use(bodyParser.json());
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'password',
+  password: 'Benjamin',
   database: 'notes_db'
 });
 
@@ -21,6 +22,18 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to MySQL');
+});
+
+// API route to fetch all notes
+app.get('/fetch-notes', (req, res) => {
+  const query = 'SELECT id, data AS description, created_at AS date FROM notes';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching notes:', err);
+      return res.status(500).json({ error: 'Failed to fetch notes' });
+    }
+    res.status(200).json({ notes: results });
+  });
 });
 
 // API route to add a note

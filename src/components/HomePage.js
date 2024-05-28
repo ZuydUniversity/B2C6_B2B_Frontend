@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './HomePage.css';
 
-// Importeren van de Note type
 /**
  * @typedef {import('./types/note').Note} Note
  */
@@ -14,7 +13,7 @@ const HomePage = ({ user }) => {
   const [newNote, setNewNote] = useState('');
   const [showNoteForm, setShowNoteForm] = useState(false);
   const [noteFormHeight, setNoteFormHeight] = useState(0);
-  const [notesContainerMarginTop, setNotesContainerMarginTop] = useState(10); // Set initial value to 10
+  const [notesContainerMarginTop, setNotesContainerMarginTop] = useState(10);
 
   const noteFormRef = useRef(null);
 
