@@ -65,10 +65,18 @@ Vagrant.configure("2") do |config|
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+     
+     # update packages en installeer python3 tools + pip 
      apt-get update
      apt-get install -y python3-dev default-libmysqlclient-dev build-essential pkg-config
      apt-get install -y python3-pip
-     pip install fastapi
-     pip install mysqlclient 
+     
+     # installeer python3 packages in de onderstaande regels
+     pip install flask
+     pip install mysqlclient
+
+     # clone benodigde repos vanuit main branches (pas aan met "-b <branch naam>")
+     git clone https://github.com/ZuydUniversity/B2C6_B2B_Frontend.git
+     git clone https://github.com/ZuydUniversity/B2C6_B2B_Backend.git 
    SHELL
 end
