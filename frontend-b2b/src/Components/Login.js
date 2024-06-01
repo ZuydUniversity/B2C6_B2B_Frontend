@@ -12,10 +12,11 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, wachtwoord });
+      const response = await axios.post('http://localhost:5000/login', { email, wachtwoord, personeelsnummer });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response?.data?.message || 'Something went wrong');
+      console.error('Error during login:', error);
     }
   };
 
@@ -61,6 +62,7 @@ const LoginForm = () => {
             <a href="http://localhost:3000/">Wachtwoord vergeten?</a>
             <button type="submit">Log in</button>
           </div>
+          {message && <div className="message">{message}</div>}
           <div className="footer">
             <p>Mede mogelijk gemaakt door</p>
             <hr className="DividerLine2" />
