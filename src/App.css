@@ -1,4 +1,5 @@
 /* App.css */
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -63,4 +64,70 @@ th, td {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* New styles for the updated layout */
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.header {
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid #ddd;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #e0f0ff;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+.notities, .toevoegen {
+  width: 45%;
+  text-align: left;
+}
+
+.notities ul, .toevoegen ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notities li, .toevoegen li {
+  margin: 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.notities li:hover, .toevoegen li:hover {
+  background-color: #ddd;
+}
+
+.search {
+  margin-top: 20px;
+}
+
+.search input {
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 80%;
 }

@@ -48,31 +48,40 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Resultaten</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Naam</th>
-            <th>Type</th>
-            <th>Datum</th>
-            <th>Acties</th>
-          </tr>
-        </thead>
-        <tbody>
-          {results.map((result) => (
-            <tr key={result.id}>
-              <td>{result.name}</td>
-              <td>{result.type}</td>
-              <td>{new Date(result.date).toLocaleString()}</td>
-              <td className="actions">
-                <i className="fas fa-eye" onClick={() => viewResult(result.id)}></i>
-                <i className="fas fa-trash" onClick={() => deleteResult(result.id)}></i>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="App">
+      <header className="header">
+        <img src="https://via.placeholder.com/150" alt="Profile" className="profile-pic" />
+        <div className="contact-info">
+          <h2>Rik Goedelen</h2>
+          <p>tel: +3149731949</p>
+          <p>mail: fysiobijgoedelen@gmail.com</p>
+          <p>specialisatie: Manuele Therapie - Fysio</p>
+        </div>
+      </header>
+      <main className="main-content">
+        <div className="notities">
+          <h3>Kies een notitie</h3>
+          <ul>
+            {results.map((result) => (
+              <li key={result.id} onClick={() => viewResult(result.id)}>
+                {new Date(result.date).toLocaleDateString('nl-NL', { weekday: 'long', day: '2-digit', month: '2-digit' })}  {result.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="toevoegen">
+          <h3>Toevoegen</h3>
+          {/* Example static entries for "Toevoegen" section */}
+          <ul>
+            <li>Maandag 15-06  Karel van Stad</li>
+            <li>Woensdag 26-04  Joep Doe</li>
+            <li>Maandag 15-01  Elisa van Winkel</li>
+          </ul>
+        </div>
+        <div className="search">
+          <input type="text" placeholder="Afspraak zoeken ..." />
+        </div>
+      </main>
 
       {selectedResult && (
         <div id="myModal" className="modal">
