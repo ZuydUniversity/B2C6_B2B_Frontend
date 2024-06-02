@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './HomePage.css';
+import profilePic from './assets/basic-pfp.jpeg'; // Import the profile picture
 
 /**
  * @typedef {import('./types/note').Note} Note
@@ -66,12 +67,12 @@ const HomePage = ({ user }) => {
   return (
     <div className="container">
       <div className="header">
-        <img src="profile-picture-url" alt="Profile" className="profile-pic" />
+        <img src={profilePic} alt="Profile" className="profile-pic" />
         <div className="contact-info">
           <h2>Gebruiker</h2>
-          <p>tel: +31321321</p>
+          <p>tel: +31 123 12 12</p>
           <p>mail: gebruiker@gmail.com</p>
-          <p>specialisatie: </p>
+          <p>specialisatie: gebruiker</p>
         </div>
       </div>
       <div className="notes-section">
