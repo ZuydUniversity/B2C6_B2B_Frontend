@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+function MyButton() {
+  return (
+    <button>I'm a button :D</button>
+  );
+}
+
 function App() {
   return (
     <div className="App">
@@ -17,9 +23,14 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          This text is now lower
+        </p>
+        <MyButton />
       </header>
     </div>
   );
 }
+
 
 export default App;
