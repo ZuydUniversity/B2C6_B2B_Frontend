@@ -13,7 +13,6 @@ const HomePage = ({ user }) => {
   const [newNote, setNewNote] = useState('');
   const [showNoteForm, setShowNoteForm] = useState(false);
   const [noteFormHeight, setNoteFormHeight] = useState(0);
-  const [notesContainerMarginTop, setNotesContainerMarginTop] = useState(10);
 
   const noteFormRef = useRef(null);
 
@@ -66,53 +65,58 @@ const HomePage = ({ user }) => {
 
   return (
     <div className="container">
-      <h1 align="center" style={{ color: '#2596be' }}>Notities</h1>
-      <h2 align="center" style={{ color: '#2596be' }}>Op deze pagina kan je alle notities bijhouden.</h2>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Zoek notities..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="form-control"
-        />
+      <div className="header">
+        <img src="profile-picture-url" alt="Profile" className="profile-pic" />
+        <div className="contact-info">
+          <h2>Gebruiker</h2>
+          <p>tel: +31321321</p>
+          <p>mail: gebruiker@gmail.com</p>
+          <p>specialisatie: </p>
+        </div>
       </div>
-      <button className="btn btn-primary fetch-button" onClick={handleFetchNotes}>Zoeken</button>
-      <p align="center" style={{ color: '#2596be' }}>Datum: {currentDate}</p>
-      <div className="notes-container" style={{ marginTop: `${notesContainerMarginTop}px` }}>
-        <div className="notes-list">
-          <h3>Notities</h3>
-          <div className="notes">
+      <div className="notes-section">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Zoek notities..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="form-control"
+          />
+          <button className="btn btn-primary fetch-button" onClick={handleFetchNotes}>Zoeken</button>
+        </div>
+        <div className="notes-container">
+          <h3>Kies een notitie</h3>
+          <div className="notes-list">
             {filteredNotes.map((note) => (
               <div key={note.id} className="note-item">
-                <p>{note.description}</p>
-                <p>{note.date}</p>
+                <p>{note.date} &gt; {note.description}</p>
                 <button type="button" className="btn btn-danger" onClick={() => deleteNote(note.id)}>Verwijderen</button>
               </div>
             ))}
           </div>
+          {showNoteForm && (
+            <div className="notes-input" ref={noteFormRef}>
+              <form onSubmit={handleFormSubmit} className="note-form">
+                <textarea
+                  name="note"
+                  id="note"
+                  className="form-control"
+                  value={newNote}
+                  onChange={(e) => setNewNote(e.target.value)}
+                  required
+                ></textarea>
+                <br />
+                <div align="center">
+                  <button type="submit" className="btn btn-primary">Notitie toevoegen</button>
+                </div>
+              </form>
+            </div>
+          )}
+          {!showNoteForm && (
+            <button className="btn btn-primary" onClick={() => setShowNoteForm(true)}>Voeg notitie toe</button>
+          )}
         </div>
-        {showNoteForm && (
-          <div className="notes-input" ref={noteFormRef}>
-            <form onSubmit={handleFormSubmit} className="note-form">
-              <textarea
-                name="note"
-                id="note"
-                className="form-control"
-                value={newNote}
-                onChange={(e) => setNewNote(e.target.value)}
-                required
-              ></textarea>
-              <br />
-              <div align="center">
-                <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#2596be' }}>Notitie toevoegen</button>
-              </div>
-            </form>
-          </div>
-        )}
-        {!showNoteForm && (
-          <button className="btn btn-primary" onClick={() => setShowNoteForm(true)}>Voeg notitie toe</button>
-        )}
       </div>
     </div>
   );

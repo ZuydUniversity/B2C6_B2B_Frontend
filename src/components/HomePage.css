@@ -8,27 +8,90 @@
   background-color: #f9f1ee;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.contact-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.contact-info h2 {
+  margin: 0;
+  color: #2596be;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  color: #666666;
+}
+
+.notes-section {
+  width: 100%;
+  max-width: 800px;
+}
+
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
 .notes-container {
-  flex-grow: 1; /* Zorgt ervoor dat de notitiescontainer de resterende ruimte inneemt */
-  width: 100%; /* Zorg ervoor dat de notitiescontainer de volledige breedte inneemt */
-  max-width: 800px; /* Stel een maximale breedte in om te voorkomen dat de inhoud te breed wordt */
-  margin: 10px auto; /* Voeg wat marge toe om de inhoud te scheiden van de randen van het scherm en zet de linker- en rechtermarge op automatisch om het gecentreerd te houden */
+  background-color: #e9f6fc;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .notes-list {
-  width: 100%;
-  height: 100px; /* Hoogte van de notities container */
+  display: flex;
+  flex-direction: column;
+}
+
+.note-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.note-item p {
+  margin: 0;
 }
 
 .note-form {
-  width: 100%;
-  height: 100px; /* Verhoog de hoogte naar wens */
+  display: flex;
+  flex-direction: column;
 }
 
 textarea.form-control {
   width: 100%;
-  height: 100%; /* Laat de hoogte van de textarea de volledige hoogte van de notitiescontainer innemen */
-  resize: vertical; /* Stel in dat alleen de hoogte kan worden gewijzigd */
+  resize: vertical;
 }
 
 button[type="submit"] {
