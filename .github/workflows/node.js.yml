@@ -1,0 +1,58 @@
+name: Development
+
+on:
+  pull_request:
+    types:
+      - opened       # Trigger de workflow wanneer een nieuwe pull request wordt geopend
+      - edited       # Trigger de workflow wanneer een bestaande pull request wordt bewerkt
+      - synchronize  # Trigger de workflow wanneer er nieuwe commits worden toegevoegd aan een pull request
+      - reopened     # Trigger de workflow wanneer een gesloten pull request opnieuw wordt geopend
+  workflow_call:     # Maakt het mogelijk om deze workflow aan te roepen vanuit andere workflows
+
+jobs:
+  test:
+    name: Test application
+    runs-on: ubuntu-latest  # Gebruik de nieuwste versie van Ubuntu als runner
+    timeout-minutes: 10     # Stel een tijdslimiet van 10 minuten in voor deze job
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2  # Haal de code van de repository op
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v2.1.5  # Installeer Node.js versie 16
+        with:
+          node-version: 16
+
+      - name: "🔧 install npm@latest"
+        run: npm i -g npm@latest  # Installeer de nieuwste versie van npm
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1  # Installeer de npm dependencies
+
+      - name: "🔍 run tests"
+        run: npm test  # Voer de tests uit zoals gedefinieerd in package.json
+
+      - name: "📦 build application"
+        run: npm run build  # Bouw de applicatie voor productie
+
+  lint:
+    name: Code standards
+    runs-on: ubuntu-latest  # Gebruik de nieuwste versie van Ubuntu als runner
+    timeout-minutes: 10     # Stel een tijdslimiet van 10 minuten in voor deze job
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2  # Haal de code van de repository op
+
+      - name: "🔧 setup node"
+        uses: actions/setup-node@v2.1.5  # Installeer Node.js versie 16
+        with:
+          node-version: 16
+
+      - name: "🔧 install npm@latest"
+        run: npm i -g npm@latest  # Installeer de nieuwste versie van npm
+
+      - name: "📦 install dependencies"
+        uses: bahmutov/npm-install@v1  # Installeer de npm dependencies
+
+      - name: "🔍 lint code"
+        run: npm run lint  # Voer de linter uit zoals gedefinieerd in package.json
