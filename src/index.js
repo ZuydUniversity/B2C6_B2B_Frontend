@@ -1,18 +1,11 @@
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
-
-// Als je de prestaties in je app wilt meten, geef dan een functie door
-// om resultaten te loggen (bijvoorbeeld: reportWebVitals(console.log))
-// of stuur naar een analytics endpoint. Leer meer: https://bit.ly/CRA-vitals
-reportWebVitals();
