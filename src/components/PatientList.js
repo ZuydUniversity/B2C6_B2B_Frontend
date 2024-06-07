@@ -6,7 +6,7 @@ const PatientList = () => {
   const [sortConfig, setSortConfig] = useState({ key: 'voornaam', direction: 'ascending' });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/patients')
+    axios.get('http://localhost:3000/patients')
       .then(response => {
         console.log('Data fetched from API:', response.data);
         setPatients(response.data);
