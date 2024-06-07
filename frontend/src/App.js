@@ -1,12 +1,12 @@
 // src/App.js
 
 import React from 'react';
-import PatientList from './components/PatientList';
+import Loginpage from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      <PatientList />
+      <Loginpage />
     </div>
   );
 }
