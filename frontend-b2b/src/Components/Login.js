@@ -71,7 +71,7 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
-      <img className="image-container" src="/Kinderen.png" alt="Kinderen" height={700} />
+      <img className="image-container" src="/FrontpageImage.png" alt="FrontpageImage" height={700} />
     </div>
   );
 };
