@@ -3,8 +3,11 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   return (
-    <div className="container">
+    <div className="flex-container">
       <h1 className="dashboard-title">Dashboard</h1>
+
+      <img className="logo" src="JDB-logo.png" alt="JDB-logo" />
+
       <div className="icon-container">
         <div className="icon">
           <img src="\icons\kalender.png" alt="Kalender" />
