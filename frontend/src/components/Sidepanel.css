@@ -1,0 +1,12 @@
+.sidepanel {
+    width: 250px; /* Verminder de breedte om wat ruimte over te laten aan de zijkant */
+    max-height: 80vh; /* Beperk de maximale hoogte tot 80% van de viewport-hoogte */
+    background-color: #92d7f5;
+    padding: 15px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 50px; /* Plaats de sidepanel 50px vanaf de bovenkant */
+    right: 20px; /* Plaats de sidepanel 20px vanaf de rechterkant */
+    border-radius: 10px; /* Voeg afgeronde hoeken toe */
+    overflow-y: auto;
+}
