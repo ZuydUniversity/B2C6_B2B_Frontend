@@ -7,14 +7,9 @@ app = Flask(__name__)
 # MySQL connection
 db = pymysql.connect(host='localhost',
                      user='root',
-                     password='Benjamin',
+                     password='Benjamin1803!',
                      database='notes_db',
                      cursorclass=pymysql.cursors.DictCursor)
-
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'Benjamin'
-app.config['MYSQL_DB'] = 'notes_db'
 
 mysql = MySQLError(app)
 
@@ -62,4 +57,4 @@ def delete_note(id):
         return jsonify({'error': 'Failed to delete note'}), 500
 
 if __name__ == '__main__':
-    app.run(port=3306)
+    app.run(port=5000)

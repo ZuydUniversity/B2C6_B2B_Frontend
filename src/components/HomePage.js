@@ -2,38 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import './HomePage.css';
 import profilePic from './assets/basic-pfp.jpeg'; // Import the profile picture
 
-/**
- * @typedef {import('./types/note').Note} Note
- */
-
 const HomePage = ({ user }) => {
   const [notes, setNotes] = useState(user.notes);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
-  const [currentDate, setCurrentDate] = useState('');
   const [newNote, setNewNote] = useState('');
-  const [showNoteForm, setShowNoteForm] = useState(false);
-  const [noteFormHeight, setNoteFormHeight] = useState(0);
-
-  const noteFormRef = useRef(null);
 
   useEffect(() => {
-    const date = new Date().toLocaleDateString();
-    setCurrentDate(date);
-  }, []);
-
-  useEffect(() => {
-    const filtered = notes.filter(note =>
-      note.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredNotes(filtered);
-  }, [searchTerm, notes]);
-
-  useEffect(() => {
-    if (noteFormRef.current) {
-      setNoteFormHeight(noteFormRef.current.clientHeight);
-    }
-  }, [showNoteForm]);
+    setFilteredNotes(notes);
+  }, [notes]);
 
   const deleteNote = async (id) => {
     await fetch(`/delete-note/${id}`, { method: 'DELETE' });
@@ -42,27 +19,42 @@ const HomePage = ({ user }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const noteDescription = event.target.note.value;
+    const noteDescription = newNote.trim();
+    if (!noteDescription) return;
     const response = await fetch('/add-note', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ description: noteDescription })
     });
-    const newNoteData = await response.json();
-    setNotes([...notes, newNoteData]);
-    setNewNote('');
-    setShowNoteForm(false);
+    if (response.ok) {
+      const newNoteData = await response.json();
+      setNotes([...notes, newNoteData]);
+      setNewNote('');
+    }
   };
 
   const handleFetchNotes = async () => {
     try {
       const response = await fetch('/fetch-notes');
-      const data = await response.json();
-      setNotes(data.notes);
+      if (response.ok) {
+        const data = await response.json();
+        setNotes(data.notes);
+      }
     } catch (error) {
       console.error('Error fetching notes:', error);
     }
   };
+
+  useEffect(() => {
+    handleFetchNotes();
+  }, []);
+
+  useEffect(() => {
+    const filtered = notes.filter(note =>
+      note.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredNotes(filtered);
+  }, [searchTerm, notes]);
 
   return (
     <div className="container">
@@ -96,27 +88,23 @@ const HomePage = ({ user }) => {
               </div>
             ))}
           </div>
-          {showNoteForm && (
-            <div className="notes-input" ref={noteFormRef}>
-              <form onSubmit={handleFormSubmit} className="note-form">
-                <textarea
-                  name="note"
-                  id="note"
-                  className="form-control"
-                  value={newNote}
-                  onChange={(e) => setNewNote(e.target.value)}
-                  required
-                ></textarea>
-                <br />
-                <div align="center">
-                  <button type="submit" className="btn btn-primary">Notitie toevoegen</button>
-                </div>
-              </form>
-            </div>
-          )}
-          {!showNoteForm && (
-            <button className="btn btn-primary" onClick={() => setShowNoteForm(true)}>Voeg notitie toe</button>
-          )}
+          <div className="notes-input">
+            <form onSubmit={handleFormSubmit} className="note-form">
+              <textarea
+                name="note"
+                id="note"
+                className="form-control"
+                value={newNote}
+                onChange={(e) => setNewNote(e.target.value)}
+                placeholder="Voeg hier je notitie toe..."
+                required
+              ></textarea>
+              <br />
+              <div align="center">
+                <button type="submit" className="btn btn-primary">Notitie toevoegen</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
