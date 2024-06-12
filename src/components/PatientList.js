@@ -8,11 +8,10 @@ const PatientList = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/patients')
       .then(response => {
-        console.log('Data fetched from API:', response.data);
         setPatients(response.data);
       })
       .catch(error => {
-        console.error('There was an error fetching the patients!', error);
+        console.error('Error fetching patients:', error);
       });
   }, []);
 
@@ -33,56 +32,28 @@ const PatientList = () => {
     }
     return 0;
   });
-  const Dropdown = ({ label, options, onSelect }) => {
-    return (
-      <select value={sortConfig.key} onChange={(e) => onSelect(e.target.value)}>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    );
-  };
 
   return (
-
-    
     <div>
-      <tr>
-        <th>
-          <Dropdown
-            label="Sort By"
-            options={[
-              { value: 'voornaam', label: 'Voornaam' },
-              { value: 'achternaam', label: 'achternaam' },
-              { value: 'geboortedatum', label: 'geboortedatum' },
-              { value: 'geslacht', label: 'geslacht' },
-              { value: 'diagnose', label: 'diagnose' }
-            ]}
-            onSelect={(selectedKey) => sortPatients(selectedKey)}
-          />
-        </th>
-      </tr>
       <h1>Patiënten Overzicht</h1>
       <table>
         <thead>
           <tr>
-            <th className="patient-header">Voornaam</th>
-            <th className="patient-header">Achternaam</th>
-            <th className="patient-header">Geboortedatum</th>
-            <th className="patient-header">Geslacht</th>
-            <th className="patient-header">Diagnose</th>
+            <th onClick={() => sortPatients('voornaam')}>Voornaam</th>
+            <th onClick={() => sortPatients('achternaam')}>Achternaam</th>
+            <th onClick={() => sortPatients('geboortedatum')}>Geboortedatum</th>
+            <th onClick={() => sortPatients('geslacht')}>Geslacht</th>
+            <th onClick={() => sortPatients('diagnose')}>Diagnose</th>
           </tr>
         </thead>
         <tbody>
           {sortedPatients.map((patient) => (
-            <tr key={patient.id}className="patient-row">
-              <td className="patient-cell">{patient.voornaam}</td>
-              <td className="patient-cell">{patient.achternaam}</td>
-              <td className="patient-cell">{patient.geboortedatum}</td>
-              <td className="patient-cell">{patient.geslacht}</td>
-              <td className="patient-cell">{patient.diagnose}</td>
+            <tr key={patient.id}>
+              <td>{patient.voornaam}</td>
+              <td>{patient.achternaam}</td>
+              <td>{patient.geboortedatum}</td>
+              <td>{patient.geslacht}</td>
+              <td>{patient.diagnose}</td>
             </tr>
           ))}
         </tbody>
