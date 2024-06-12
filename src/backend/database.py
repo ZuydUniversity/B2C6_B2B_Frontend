@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from pymysql import MySQLError
 import pymysql.cursors
 
 app = Flask(__name__)
@@ -9,6 +10,13 @@ db = pymysql.connect(host='localhost',
                      password='Benjamin',
                      database='notes_db',
                      cursorclass=pymysql.cursors.DictCursor)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'Benjamin'
+app.config['MYSQL_DB'] = 'notes_db'
+
+mysql = MySQLError(app)
 
 # API route to fetch all notes
 @app.route('/fetch-notes', methods=['GET'])
