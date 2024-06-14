@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css';
+import './Patients.css';
 import ResultDetails from './ResultDetails';
 
-const App = () => {
+const Patients = () => {
   const [results, setResults] = useState([]);
   const [selectedResult, setSelectedResult] = useState(null);
 
@@ -86,4 +86,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Patients;
