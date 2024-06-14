@@ -1,26 +1,33 @@
 import React from 'react';
 import './Dashboard.css'; 
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   return (
     <div className="flex-container">
       <h1 className="dashboard-title">Dashboard</h1>
-
       <img className="logo" src="JDB-logo.png" alt="JDB-logo" />
 
+      {/* Top row */}
       <div className="icon-container">
         <div className="icon">
           <img src="\icons\kalender.png" alt="Kalender" />
           <span>Kalender</span>
         </div>
         <div className="icon">
-          <img src="\icons\resultaten.png" alt="Resultaten" />
+          <Link to="/patients">
+            <img src="\icons\resultaten.png" alt="Resultaten" />
+          </Link>
           <span>Resultaten</span>
         </div>
         <div className="icon">
-          <img src="\icons\patienten.png" alt="Patiëntenoverzicht" />
+          <Link to="/patientList">
+            <img src="\icons\patienten.png" alt="Patiëntenoverzicht" />
+          </Link>
           <span>Patiëntenoverzicht</span>
         </div>
+
+      {/* Bottom row   */}
       </div>
       <div className="icon-container">
         <div className="icon">
