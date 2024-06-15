@@ -3,7 +3,7 @@ import './HomePage.css';
 import profilePic from './assets/basic-pfp.jpeg'; // Import the profile picture
 
 const HomePage = ({ user }) => {
-  const [notes, setNotes] = useState(user.notes);
+  const [notes, setNotes] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [newNote, setNewNote] = useState('');

@@ -11,8 +11,6 @@ db = pymysql.connect(host='localhost',
                      database='notes_db',
                      cursorclass=pymysql.cursors.DictCursor)
 
-mysql = MySQLError(app)
-
 # API route to fetch all notes
 @app.route('/fetch-notes', methods=['GET'])
 def fetch_notes():
@@ -34,7 +32,7 @@ def add_note():
         if not description:
             return jsonify({'error': 'Note description is required'}), 400
         with db.cursor() as cursor:
-            query = 'INSERT INTO notes (data) VALUES (%s)'
+            query = 'INSERT INTO notes (data, created_at) VALUES (%s, NOW())'
             cursor.execute(query, (description,))
             db.commit()
             new_note_id = cursor.lastrowid
