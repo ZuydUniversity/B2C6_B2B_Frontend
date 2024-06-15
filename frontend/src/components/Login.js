@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios';
 
@@ -8,6 +9,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [wachtwoord, setWachtwoord] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,6 +20,7 @@ const LoginForm = () => {
       setMessage(error.response?.data?.message || 'Something went wrong');
       console.error('Error during login:', error);
     }
+    navigate('/patients');
   };
 
   return (
