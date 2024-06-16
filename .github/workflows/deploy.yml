@@ -12,7 +12,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          password: ${{ secrets.AZURE_GROEP3_PROFILE }}
+          creds: ${{ secrets.AZURE_GROEP3_PROFILE }}
 
       - name: Checkout source code
         uses: actions/checkout@v2
