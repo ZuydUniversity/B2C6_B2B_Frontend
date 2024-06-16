@@ -19,4 +19,4 @@ jobs:
 
       - name: Copy files to Azure VM
         run: |
-          scp -o StrictHostKeyChecking=no -r . groep3@4.180.128.80: /.
+          scp -o StrictHostKeyChecking=no -r . groep3@4.180.128.80: /
