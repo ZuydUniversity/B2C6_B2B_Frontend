@@ -9,10 +9,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          {/* Route for the login page */}
+          {/* Route voor the login  */}
           <Route path="/" element={<Loginpage />} />
 
-          {/* Route for the patient list page */}
+          {/* Route voor the patienten lijst */}
           <Route path="/patients" element={<PatientList />} />
         </Routes>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; //voor de navigatie tussen paginas
 import './Login.css';
 import axios from 'axios';
 
