@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import './PatientList.css'; // Voeg deze regel toe voor aangepaste CSS
+import './PatientList.css'; 
 
 const PatientList = () => {
     const [patients, setPatients] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: 'voornaam', direction: 'ascending' });
-    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:5000/patients')
@@ -36,8 +35,6 @@ const PatientList = () => {
         }
         return 0;
     });
-
-
     const Dropdown = ({ label, options, onSelect }) => {
         return (
             <select value={sortConfig.key} onChange={(e) => onSelect(e.target.value)}>
@@ -51,30 +48,38 @@ const PatientList = () => {
     };
 
     return (
+
+
         <div>
+            <tr>
+                <th>
+                    <Dropdown
+                        label="Sort By"
+                        options={[
+                            { value: 'voornaam', label: 'Voornaam' },
+                            { value: 'achternaam', label: 'achternaam' },
+                            { value: 'geboortedatum', label: 'geboortedatum' },
+                            { value: 'geslacht', label: 'geslacht' },
+                            { value: 'diagnose', label: 'diagnose' }
+                        ]}
+                        onSelect={(selectedKey) => sortPatients(selectedKey)}
+                    />
+                </th>
+            </tr>
             <h1>Patiënten Overzicht</h1>
             <div>
                 <Link to="/patient-profile/:id" className="button-link">
                     Ga naar Patientprofiel Pagina
                 </Link>
             </div>
-
             <table>
                 <thead>
                     <tr>
-                        <th>
-                            <Dropdown
-                                label="Sort By"
-                                options={[
-                                    { value: 'voornaam', label: 'Voornaam' },
-                                    { value: 'achternaam', label: 'Achternaam' },
-                                    { value: 'geboortedatum', label: 'Geboortedatum' },
-                                    { value: 'geslacht', label: 'Geslacht' },
-                                    { value: 'diagnose', label: 'Diagnose' }
-                                ]}
-                                onSelect={(selectedKey) => sortPatients(selectedKey)}
-                            />
-                        </th>
+                        <th className="patient-header">Voornaam</th>
+                        <th className="patient-header">Achternaam</th>
+                        <th className="patient-header">Geboortedatum</th>
+                        <th className="patient-header">Geslacht</th>
+                        <th className="patient-header">Diagnose</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,8 +90,6 @@ const PatientList = () => {
                             <td className="patient-cell">{patient.geboortedatum}</td>
                             <td className="patient-cell">{patient.geslacht}</td>
                             <td className="patient-cell">{patient.diagnose}</td>
-                            <td className="patient-cell">
-                            </td>
                         </tr>
                     ))}
                 </tbody>
