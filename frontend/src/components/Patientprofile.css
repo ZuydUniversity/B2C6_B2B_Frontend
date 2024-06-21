@@ -1,0 +1,90 @@
+/* Patientprofile.css */
+
+.patient-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f4f7;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+}
+
+.logo {
+    font-size: 32px; 
+    font-weight: bold;
+    position: absolute;
+    left: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-left: 52px; /* Maakt ruimte voor het logo zodat de titel gecentreerd blijft */
+}
+
+.profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+    .profile-picture img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+.patient-name {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.patient-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+    .patient-details div {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .patient-details strong {
+        margin-right: 10px;
+    }
+
+.patient-data-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+    .patient-data-button:hover {
+        background-color: #0056b3;
+    }
