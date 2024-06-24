@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Loginpage from './components/Login';
+import Homepage from './components/Homepage';
 import Dashboard from './components/Dashboard';
 import PatientList from './components/PatientList';
 import ResultDetails from './components/ResultDetails';
@@ -14,13 +15,16 @@ function App() {
                     {/* Route voor de inlogpagina */}
                     <Route path="/" element={<Loginpage />} />
 
+                    {/* Route voor het Homepage */}
+                    <Route path="/Homepage" element={<Homepage />} />
+
                     {/* Route voor het dashboard */}
                     <Route path="/dashboard" element={<Dashboard />} />
 
-                    {/* Route voor de lijst met patiënten */}
+                    {/* Route voor de lijst met patiï¿½nten */}
                     <Route path="/patientList" element={<PatientList />} />
 
-                    {/* Route voor individuele patiëntendetails */}
+                    {/* Route voor individuele patiï¿½ntendetails */}
                     <Route path="/patient-profile/:id" element={<Patientprofile />} />
 
                     {/* Route voor resultaatdetails */}
