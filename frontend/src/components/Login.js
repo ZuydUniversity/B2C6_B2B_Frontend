@@ -3,6 +3,7 @@ import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import './Login.css';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import Sidepanel from './sidepanel';
 
 const LoginForm = () => {
   const [personeelsnummer, setPersoneelsnummer] = useState('');
@@ -22,7 +23,11 @@ const LoginForm = () => {
   };
 
   return (
+    
     <div className="container">
+      <div>
+        <Sidepanel/>
+      </div>
       <div className="form-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-header">
@@ -74,6 +79,7 @@ const LoginForm = () => {
       </div>
       <img className="image-container" src="/FrontpageImage.png" alt="FrontpageImage" height={700} />
     </div>
+    
   );
 };
 
