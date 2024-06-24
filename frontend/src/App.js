@@ -21,10 +21,10 @@ function App() {
                     {/* Route voor het dashboard */}
                     <Route path="/dashboard" element={<Dashboard />} />
 
-                    {/* Route voor de lijst met pati�nten */}
+                    {/* Route voor de lijst met patiënten */}
                     <Route path="/patientList" element={<PatientList />} />
 
-                    {/* Route voor individuele pati�ntendetails */}
+                    {/* Route voor individuele patiëntendetails */}
                     <Route path="/patient-profile/:id" element={<Patientprofile />} />
 
                     {/* Route voor resultaatdetails */}
