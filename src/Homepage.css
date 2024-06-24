@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /* Add a reset for margins and paddings */
 * {
   margin: 0;
@@ -137,3 +138,82 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+=======
+/* Homepage.css */
+
+/* src/Homepage.css */
+
+.homepage {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .header-text h1 {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-img {
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+  }
+  
+  .notes {
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .notes h2 {
+    margin-bottom: 10px;
+  }
+  
+  .notes-list .note-item {
+    margin: 5px 0;
+    color: #d32f2f;
+  }
+  
+  .add-note {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .calendar {
+    background-color: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .calendar h2 {
+    margin-bottom: 10px;
+  }
+  
+  
+>>>>>>> Stashed changes
