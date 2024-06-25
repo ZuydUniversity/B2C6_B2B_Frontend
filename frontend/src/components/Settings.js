@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Settings.module.css'; // Import je CSS-module voor styling
+import styles from './Settings.module.css'; 
 
 const leftSettings = [
   'Dashboard Omgeving',
@@ -12,7 +12,7 @@ const leftSettings = [
   'Bevestiging afspraak',
 ];
 
-const rightSettings = [
+const rightSettingsInitial = [
   'Geluid & Vastpinnen melding',
   'Geluid',
   'Vastpinnen melding',
@@ -29,8 +29,10 @@ const Settings = () => {
   );
 
   const [rightSettingsState, setRightSettingsState] = useState(
-    Array(rightSettings.length).fill(false)
+    Array(rightSettingsInitial.length).fill(false)
   );
+
+  const [rightSettings, setRightSettings] = useState(rightSettingsInitial);
 
   const handleToggleLeft = (index) => {
     const newSettingsState = [...leftSettingsState];
@@ -41,52 +43,73 @@ const Settings = () => {
 
   const handleToggleRight = (index) => {
     const newSettingsState = [...rightSettingsState];
-    newSettingsState[index] = !newSettingsState[index];
+    const newRightSettings = [...rightSettings];
+
+    if (index === 0) { // "Geluid & Vastpinnen melding"
+      const value = !newSettingsState[index];
+      newSettingsState[0] = value;
+      newSettingsState[1] = value; // Geluid
+      newSettingsState[2] = value; // Vastpinnen melding
+    } else if (index === 3) { // Mode: Day/Night
+      newSettingsState[index] = !newSettingsState[index];
+      newRightSettings[index] = newSettingsState[index] ? 'Mode: Night' : 'Mode: Day';
+    } else {
+      newSettingsState[index] = !newSettingsState[index];
+      if (newSettingsState[1] === false || newSettingsState[2] === false) {
+        newSettingsState[0] = false; // Zet "Geluid & Vastpinnen melding" uit als een van de individuele uit staat
+      } else if (newSettingsState[1] && newSettingsState[2]) {
+        newSettingsState[0] = true; // Zet "Geluid & Vastpinnen melding" aan als beide individueel aan staan
+      }
+    }
+
     setRightSettingsState(newSettingsState);
+    setRightSettings(newRightSettings);
     console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
   };
 
   return (
     <div className={styles.settingsPage}>
-      <div className={`${styles.settingsBlock} ${styles.leftBlock}`}>
-        {leftSettings.map((setting, index) => (
-          <div className={styles.settingItem} key={index}>
-            <span className={styles.settingText}>{setting}</span>
-            <div className={styles.sliderContainer}>
-              <input
-                type="checkbox"
-                id={`slider-left-${index}`}
-                className={styles.slider}
-                checked={leftSettingsState[index]}
-                onChange={() => handleToggleLeft(index)}
-              />
-              <label htmlFor={`slider-left-${index}`} className={styles.sliderLabel}></label>
+      <h1 className={styles.title}>Instellingen</h1>
+      <div className={styles.content}>
+        <div className={`${styles.settingsBlock} ${styles.leftBlock}`}>
+          {leftSettings.map((setting, index) => (
+            <div className={styles.settingItem} key={index}>
+              <span className={styles.settingText}>{setting}</span>
+              <div className={styles.sliderContainer}>
+                <input
+                  type="checkbox"
+                  id={`slider-left-${index}`}
+                  className={styles.slider}
+                  checked={leftSettingsState[index]}
+                  onChange={() => handleToggleLeft(index)}
+                />
+                <label htmlFor={`slider-left-${index}`} className={styles.sliderLabel}></label>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className={styles.logoContainer}>
-        {/* Placeholder for site logos */}
-        <h1>Site Logos</h1>
-      </div>
+        <div className={styles.logoContainer}>
+          <img src="/path/to/JBD-logo.png" alt="JBD Logo" className={styles.logo} />
+        </div>
 
-      <div className={`${styles.settingsBlock} ${styles.rightBlock}`}>
-        {rightSettings.map((setting, index) => (
-          <div className={styles.settingItem} key={index}>
-            <span className={styles.settingText}>{setting}</span>
-            <div className={styles.sliderContainer}>
-              <input
-                type="checkbox"
-                id={`slider-right-${index}`}
-                className={styles.slider}
-                checked={rightSettingsState[index]}
-                onChange={() => handleToggleRight(index)}
-              />
-              <label htmlFor={`slider-right-${index}`} className={styles.sliderLabel}></label>
+        <div className={`${styles.settingsBlock} ${styles.rightBlock}`}>
+          {rightSettings.map((setting, index) => (
+            <div className={styles.settingItem} key={index}>
+              <span className={styles.settingText}>{setting}</span>
+              <div className={styles.sliderContainer}>
+                <input
+                  type="checkbox"
+                  id={`slider-right-${index}`}
+                  className={styles.slider}
+                  checked={rightSettingsState[index]}
+                  onChange={() => handleToggleRight(index)}
+                />
+                <label htmlFor={`slider-right-${index}`} className={styles.sliderLabel}></label>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

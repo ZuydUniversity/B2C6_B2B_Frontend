@@ -35,8 +35,10 @@ const Dashboard = () => {
           <span>Afspraak toevoegen</span>
         </div>
         <div className="icon">
+        <Link to="/Settings">
           <img src="\icons\instellingen.png" alt="Instellingen" />
-          <span>Instellingen</span>
+          </Link>
+          <span>Instellingen</span>          
         </div>
       </div>
     </div>
