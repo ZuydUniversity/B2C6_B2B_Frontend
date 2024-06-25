@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import PatientList from './components/PatientList';
 import ResultDetails from './components/ResultDetails';
 import Patientprofile from './components/Patientprofile';
+import Settings from './components/Settings'
 
 function App() {
     return (
@@ -29,6 +30,9 @@ function App() {
 
                     {/* Route voor resultaatdetails */}
                     <Route path="/resultDetails" element={<ResultDetails />} />
+
+                    {/* Route voor settings */}
+                    <Route path="/Settings" element={<Settings />} />
                 </Routes>
             </div>
         </Router>
