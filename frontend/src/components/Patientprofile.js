@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Patientprofile.css';
+
 
 const PatientProfile = () => {
     // Dummy patiëntgegevens
@@ -14,7 +16,9 @@ const PatientProfile = () => {
     return (
         <div className="patient-profile">
             <div className="header">
-                <div className="logo">JDB</div>
+                <Link to="/dashboard">
+                    <img src={`${process.env.PUBLIC_URL}/JDB-logo.png`} alt="JDB Logo" className="logo" style={{ width: '150px', height: 'auto' }} />
+                </Link>
                 <div className="title">Profiel van {patient.name}</div>
             </div>
             <div className="profile-picture">
