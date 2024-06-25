@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1.4
-#
 # For building React app
 FROM node:lts AS build
 
