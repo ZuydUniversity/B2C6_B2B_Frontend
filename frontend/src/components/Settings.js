@@ -38,7 +38,7 @@ const Settings = () => {
     const newSettingsState = [...leftSettingsState];
     newSettingsState[index] = !newSettingsState[index];
     setLeftSettingsState(newSettingsState);
-    console.log(`${leftSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
+    console.log(`${leftSettings[index]} is ${newSettingsState[index] ? 'AAN' : 'UIT'}`);
   };
 
   const handleToggleRight = (index) => {
@@ -64,7 +64,7 @@ const Settings = () => {
 
     setRightSettingsState(newSettingsState);
     setRightSettings(newRightSettings);
-    console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
+    console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'AAN' : 'UIT'}`);
   };
 
   return (
@@ -89,8 +89,10 @@ const Settings = () => {
           ))}
         </div>
 
-        <div className={styles.logoContainer}>
-          <img src="/path/to/JBD-logo.png" alt="JBD Logo" className={styles.logo} />
+        <div className={styles.logoWrapper}>
+          <img src="UMCUtrechtLogo.png" alt="UMC Utrecht Logo" className={styles.umcLogo} />
+          <p className={styles.logoText}>Mede mogelijk gemaakt door</p>
+          <img src="JDB-logo.png" alt="JBD Logo" className={styles.jbdLogo} />
         </div>
 
         <div className={`${styles.settingsBlock} ${styles.rightBlock}`}>
