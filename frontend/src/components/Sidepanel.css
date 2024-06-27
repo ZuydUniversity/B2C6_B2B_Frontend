@@ -1,13 +1,13 @@
 .sidepanel {
-    width: 235px; /* Verminder de breedte om wat ruimte over te laten aan de zijkant */
-    max-height: 2560px; /* Mogelijk nog testen of dit op andere schermgroottes voor problemen zorgt */
+    width: 235px; /* Reduce the width to leave some space on the side */
+    max-height: 2560px; /* Increase the height to make the sidepanel taller */
     background-color: #92d7f5;
     padding: 15px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
-    top: 0px; /* Plaats de sidepanel 50px vanaf de bovenkant */
-    right: 0px; /* Plaats de sidepanel 20px vanaf de rechterkant */
-    border-radius: 10px; /* Voeg afgeronde hoeken toe */
+    top: 0px; /* Place the sidepanel 0px from the top */
+    right: 0px; /* Place the sidepanel 0px from the right */
+    border-radius: 10px; /* Add rounded corners */
     overflow-y: auto;
 }
 
@@ -22,14 +22,7 @@
     justify-content: space-between;
 }
 
-#calendar-prev:hover{
-    transition: 0.2s;
-    background-color: darkblue;
-    color: white;
-    cursor: grab;
-}
-
-#calendar-next:hover{
+#calendar-next:hover {
     transition: 0.2s;
     background-color: darkblue;
     color: white;
@@ -71,14 +64,14 @@
 
 .popup {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 175px; /* Adjusted to be 20px lower than the previous position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000; /* Ensure it's above other elements */
 }
 
 .popup-content {
@@ -117,4 +110,21 @@
 
 .popup-content ul li {
     text-align: left;
+}
+
+.notes {
+    padding: 20px;
+    border-top: 2px solid black; /* Make the horizontal line black and bold */
+}
+
+.notes h2 {
+    margin-top: 0;
+}
+
+.notes textarea {
+    width: 100%;
+    height: 425px; /* Decrease the height of the textarea */
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: vertical;
 }

@@ -12,6 +12,7 @@ const Sidepanel = ({ isOpen, onClose }) => {
     const [appointmentName, setAppointmentName] = useState('');
     const [appointmentStartTime, setAppointmentStartTime] = useState('');
     const [appointmentEndTime, setAppointmentEndTime] = useState('');
+    const [notes, setNotes] = useState('');
 
     const months = [
         "January", "February", "March", "April", "May", "June",
@@ -163,6 +164,15 @@ const Sidepanel = ({ isOpen, onClose }) => {
                     </div>
                 </div>
             )}
+
+            <div className='notes'>
+                <h2>Notities</h2>
+                <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Type hier je notities..."
+                />
+            </div>
         </div>
     );
 };
