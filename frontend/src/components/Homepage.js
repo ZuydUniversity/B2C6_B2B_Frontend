@@ -9,6 +9,8 @@ const Homepage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredNotes, setFilteredNotes] = useState([]);
   const [newNote, setNewNote] = useState('');
+  const [appointments, setAppointments] = useState([]);
+  const [appointmentSearchTerm, setAppointmentSearchTerm] = useState('');
 
   useEffect(() => {
     setFilteredNotes(notes);
@@ -44,6 +46,19 @@ const Homepage = () => {
       }
     } catch (error) {
       console.error('Error fetching notes:', error);
+    }
+  };
+    const fetchAppointments = async (searchPhrase) => {
+    try {
+      const response = await fetch(`/homepage?searchphrase=${encodeURIComponent(searchPhrase)}`);
+      if (response.ok) {
+        const data = await response.json();
+        setAppointments(data);
+      } else {
+        console.error('Failed to fetch appointments');
+      }
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
@@ -105,17 +120,32 @@ const Homepage = () => {
             <br />
             <div align="center">
               <button type="submit" className="btn btn-primary">Notitie toevoegen</button>
-            </div>
+              </div>
           </form>
         </div>
-        <div className="search">
-          <input
-            type="text"
-            placeholder="Afspraak zoeken ..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <button className="btn btn-primary fetch-button" onClick={handleFetchNotes}>Zoeken</button>
+        <div className="appointments">
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Afspraak zoeken ..."
+              value={appointmentSearchTerm}
+              onChange={(e) => setAppointmentSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            <button className="search-button" onClick={() => fetchAppointments(appointmentSearchTerm)}>
+              <i className="fa fa-search"></i>
+            </button>
+          </div>
+          <ul>
+            {appointments.map((appointment) => (
+              <li key={appointment.id}>
+                <p>Patient: {appointment.patient_name}</p>
+                <p>Appointment Date: {appointment.datetime}</p>
+                <p>Doctor ID: {appointment.doctor_id}</p>
+                <p>Duration: {appointment.duration} minutes</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
       <div id="myModal" className="modal">
