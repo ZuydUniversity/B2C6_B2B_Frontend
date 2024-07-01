@@ -22,6 +22,7 @@ const LoginForm = () => {
   };
 
   return (
+    
     <div className="container">
       <div className="form-container">
         <form className="login-form" onSubmit={handleSubmit}>
@@ -61,7 +62,7 @@ const LoginForm = () => {
           </div>
           <div className="form-actions">
             <a href="http://localhost:3000/">Wachtwoord vergeten?</a>
-             <Link to="/dashboard"><button type="submit">Log in</button></Link> {/*Later aanpassen om alleen met juiste gegevens in te loggen! */}
+             <Link to="/Homepage"><button type="submit">Log in</button></Link> {/*Later aanpassen om alleen met juiste gegevens in te loggen! */}
           </div>
           {message && <div className="message">{message}</div>}
           <div className="footer">
@@ -74,6 +75,7 @@ const LoginForm = () => {
       </div>
       <img className="image-container" src="/FrontpageImage.png" alt="FrontpageImage" height={700} />
     </div>
+    
   );
 };
 

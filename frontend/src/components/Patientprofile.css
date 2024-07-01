@@ -88,3 +88,66 @@
     .patient-data-button:hover {
         background-color: #0056b3;
     }
+
+.patient-reports {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.report-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add-report-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .add-report-button:hover {
+        background-color: #218838;
+    }
+
+.report-list {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.report-item {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.report-search {
+    width: 100%;
+}
+
+    .report-search input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
