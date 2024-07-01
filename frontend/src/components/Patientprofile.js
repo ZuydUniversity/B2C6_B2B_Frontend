@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Patientprofile.css';
 
-
 const PatientProfile = () => {
     // Dummy patientgegevens
     const patient = {
@@ -20,31 +19,32 @@ const PatientProfile = () => {
                     <img src={`${process.env.PUBLIC_URL}/JDB-logo.png`} alt="JDB Logo" className="logo" style={{ width: '50px', height: 'auto' }} />
                 </Link>
                 <div className="title">Profiel van {patient.name}</div>
+            </div> {/* Close header div */}
 
-        <div className="patient-details">
-            <div><strong>Telefoon:</strong> {patient.phone}</div>
-            <div><strong>Email:</strong> {patient.email}</div>
-            <div><strong>Diagnose:</strong> {patient.diagnosis}</div>
-        </div>
-        <button className="patient-data-button">Patientgegevens</button>
-
-        <div className="patient-reports">
-            <div className="reports-header">
-                <div className="report-title">Kies je verslag</div>
-                <button className="add-report-button">Voeg verslag toe</button>
-
+            <div className="patient-details">
+                <div><strong>Telefoon:</strong> {patient.phone}</div>
+                <div><strong>Email:</strong> {patient.email}</div>
+                <div><strong>Diagnose:</strong> {patient.diagnosis}</div>
             </div>
-            <div className="report-list">
-                <div className="report-item">
-                    <p>Verslag 6/25/2024</p>
+            <button className="patient-data-button">Patientgegevens</button>
+
+            <div className="patient-reports">
+                <div className="reports-header">
+                    <div className="report-title">Kies je verslag</div>
+                    <button className="add-report-button">Voeg verslag toe</button>
+                </div>
+                <div className="report-list">
+                    <div className="report-item">
+                        <p>Verslag 6/25/2024</p>
+                    </div>
+                </div>
+                <div className="report-search">
+                    <input type="text" placeholder="Afspraak zoeken" />
                 </div>
             </div>
-            <div className="report-search">
-                <input type="text" placeholder="Afspraak zoeken" />
-            </div>
-        </div>
-    </div>
+        </div> {/* Close patient-profile div */}
     );
 }
 
 export default PatientProfile;
+
