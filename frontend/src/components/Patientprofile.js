@@ -20,6 +20,7 @@ const PatientProfile = () => {
                     <img src={`${process.env.PUBLIC_URL}/JDB-logo.png`} alt="JDB Logo" className="logo" style={{ width: '50px', height: 'auto' }} />
                 </Link>
                 <div className="title">Profiel van {patient.name}</div>
+            </div>
 
         <div className="patient-details">
             <div><strong>Telefoon:</strong> {patient.phone}</div>
