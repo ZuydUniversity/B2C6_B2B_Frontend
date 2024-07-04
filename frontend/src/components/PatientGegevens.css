@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+    .header h1 {
+        margin: 0;
+        color: #333;
+    }
+
+.edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px; /* Increased padding for larger button */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Increased font size */
+}
+
+    .edit-button:hover {
+        background-color: #0056b3;
+    }
+
+.section {
+    margin-top: 20px;
+}
+
+.section-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.sub-section-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add margin to separate header from content */
+}
+
+.section-content {
+    background-color: #e9f7ff;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Ensure items align to the top */
+}
+
+.patient-info {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 20px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+    .patient-info p, .contact-info p {
+        margin: 5px 0;
+    }
+
+.medication-list .medication-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.medication-item {
+    background-color: #ffffff;
+    border: 1px solid #007bff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .medication-item p {
+        margin: 5px 0;
+    }
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    margin-left: 10px;
+    width: calc(100% - 20px);
+}

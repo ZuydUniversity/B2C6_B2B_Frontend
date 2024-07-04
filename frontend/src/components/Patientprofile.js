@@ -1,5 +1,6 @@
 import React from 'react';
 import './Patientprofile.css';
+import { Link} from 'react-router-dom';
 
 const PatientProfile = () => {
     // Dummy patientgegevens
@@ -26,7 +27,14 @@ const PatientProfile = () => {
             <div><strong>Email:</strong> {patient.email}</div>
             <div><strong>Diagnose:</strong> {patient.diagnosis}</div>
         </div>
-        <button className="patient-data-button">Patientgegevens</button>
+            <button className="patient-data-button">
+                <Link to="/PatientGegevens" className="button-link">
+                    Patientgegevens
+                </Link>
+            </button>
+            <div>
+                
+            </div>
 
         <div className="patient-reports">
             <div className="reports-header">
