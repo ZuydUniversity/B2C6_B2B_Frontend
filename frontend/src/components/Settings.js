@@ -33,6 +33,7 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
   );
 
   const [rightSettings, setRightSettings] = useState(rightSettingsInitial);
+  const [volume, setVolume] = useState(50); // Volume state
 
   const handleToggleLeft = (index) => {
     const newSettingsState = [...leftSettingsState];
@@ -139,6 +140,19 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
           ))}
         </div>
       </div>
+      {rightSettingsState[1] && ( // Display volume slider if "Geluid" is on
+        <div className={styles.volumeControl}>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            className={styles.volumeSlider}
+            onChange={(e) => setVolume(e.target.value)}
+          />
+          <span className={styles.volumePercentage}>{volume}%</span>
+        </div>
+      )}
     </div>
   );
 };
