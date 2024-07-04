@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from './Settings.module.css'; 
+import React, { useState, useEffect } from 'react';
+import styles from './Settings.module.css';
 
 const leftSettings = [
   'Dashboard Omgeving',
@@ -8,7 +8,7 @@ const leftSettings = [
   'Via sms',
   'Aanvraag afspraak',
   'Aankomende afspraak',
-  'Bevestiging wijzigen',
+  'Bevestiging wijzigingen',
   'Bevestiging afspraak',
 ];
 
@@ -23,7 +23,7 @@ const rightSettingsInitial = [
   'Uitgevoerde updates dashboard',
 ];
 
-const Settings = () => {
+const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentReminders, sendConfirmationNotifications, setSendConfirmationNotifications }) => {
   const [leftSettingsState, setLeftSettingsState] = useState(
     Array(leftSettings.length).fill(false)
   );
@@ -39,6 +39,15 @@ const Settings = () => {
     newSettingsState[index] = !newSettingsState[index];
     setLeftSettingsState(newSettingsState);
     console.log(`${leftSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
+
+    // Add logic to set state for sending reminders or notifications
+    if (index === 5) { // Aankomende afspraak
+      setSendAppointmentReminders(newSettingsState[index]);
+    }
+
+    if (index === 7) { // Bevestiging afspraak
+      setSendConfirmationNotifications(newSettingsState[index]);
+    }
   };
 
   const handleToggleRight = (index) => {
@@ -66,6 +75,25 @@ const Settings = () => {
     setRightSettings(newRightSettings);
     console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
   };
+
+  // Save settings to localStorage
+  useEffect(() => {
+    localStorage.setItem('sendAppointmentReminders', JSON.stringify(sendAppointmentReminders));
+    localStorage.setItem('sendConfirmationNotifications', JSON.stringify(sendConfirmationNotifications));
+  }, [sendAppointmentReminders, sendConfirmationNotifications]);
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const storedSendAppointmentReminders = localStorage.getItem('sendAppointmentReminders');
+    const storedSendConfirmationNotifications = localStorage.getItem('sendConfirmationNotifications');
+
+    if (storedSendAppointmentReminders !== null) {
+      setSendAppointmentReminders(JSON.parse(storedSendAppointmentReminders));
+    }
+    if (storedSendConfirmationNotifications !== null) {
+      setSendConfirmationNotifications(JSON.parse(storedSendConfirmationNotifications));
+    }
+  }, []);
 
   return (
     <div className={styles.settingsPage}>
@@ -116,3 +144,8 @@ const Settings = () => {
 };
 
 export default Settings;
+
+
+
+
+
