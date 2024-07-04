@@ -1,112 +1,153 @@
-/* File: src/style.css */
+/* Patientprofile.css */
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f7fa;
-}
-
-.container {
-  width: 80%;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.patient-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f4f7;
+    min-height: 100vh;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
 }
 
-.header h1 {
-  margin: 0;
-  color: #333;
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    left: 20px;
 }
 
-.edit-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px; /* Increased padding for larger button */
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px; /* Increased font size */
+.title {
+    font-size: 24px;
+    margin-left: 52px; /* Maakt ruimte voor het logo zodat de titel gecentreerd blijft */
 }
 
-.edit-button:hover {
-  background-color: #0056b3;
+.profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
 }
 
-.section {
-  margin-top: 20px;
+    .profile-picture img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+.patient-name {
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.section-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px 5px 0 0;
+.patient-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
 }
 
-.sub-section-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px; /* Add margin to separate header from content */
+    .patient-details div {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .patient-details strong {
+        margin-right: 10px;
+    }
+
+.patient-data-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-.section-content {
-  background-color: #e9f7ff;
-  padding: 20px;
-  border-radius: 0 0 5px 5px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;  /* Ensure items align to the top */
+    .patient-data-button:hover {
+        background-color: #0056b3;
+    }
+
+.patient-reports {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
 }
 
-.patient-info {
-  flex: 1;
-  min-width: 200px;
-  margin-right: 20px;
+.reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.contact-info {
-  flex: 1;
-  min-width: 200px;
+.report-title {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.patient-info p, .contact-info p {
-  margin: 5px 0;
+.add-report-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.medication-list .medication-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+    .add-report-button:hover {
+        background-color: #218838;
+    }
+
+.report-list {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.medication-item {
-  background-color: #ffffff;
-  border: 1px solid #007bff;
-  padding: 10px;
-  border-radius: 5px;
+.report-item {
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.medication-item p {
-  margin: 5px 0;
+.report-search {
+    width: 100%;
 }
 
-input[type="text"] {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px;
-  margin-left: 10px;
-  width: calc(100% - 20px);
-}
+    .report-search input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
