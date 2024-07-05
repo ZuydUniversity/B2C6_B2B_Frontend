@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Settings.module.css'; 
+import { Link } from 'react-router-dom';
 
 const leftSettings = [
   'Dashboard Omgeving',
@@ -69,6 +70,12 @@ const Settings = () => {
 
   return (
     <div className={styles.settingsPage}>
+      <div className={styles.logoTopWrapper}>
+        <Link to="/Dashboard">
+          <img src="JDB-logo.png" alt="JBD Logo" className={styles.jbdLogoTop} />
+        </Link>
+
+      </div>
       <h1 className={styles.title}>Instellingen</h1>
       <div className={styles.content}>
         <div className={`${styles.settingsBlock} ${styles.leftBlock}`}>
