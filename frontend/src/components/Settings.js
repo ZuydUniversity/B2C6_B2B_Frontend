@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Settings.module.css';
+import { Link } from 'react-router-dom';
 
 const leftSettings = [
   'Dashboard Omgeving',
@@ -74,7 +75,7 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
 
     setRightSettingsState(newSettingsState);
     setRightSettings(newRightSettings);
-    console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
+    console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'AAN' : 'UIT'}`);
   };
 
   // Save settings to localStorage
@@ -88,16 +89,21 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
     const storedSendAppointmentReminders = localStorage.getItem('sendAppointmentReminders');
     const storedSendConfirmationNotifications = localStorage.getItem('sendConfirmationNotifications');
 
-    if (storedSendAppointmentReminders !== null) {
+    if (storedSendAppointmentReminders !== null && storedSendAppointmentReminders !== "undefined") {
       setSendAppointmentReminders(JSON.parse(storedSendAppointmentReminders));
     }
-    if (storedSendConfirmationNotifications !== null) {
+    if (storedSendConfirmationNotifications !== null && storedSendConfirmationNotifications !== "undefined") {
       setSendConfirmationNotifications(JSON.parse(storedSendConfirmationNotifications));
     }
-  }, []);
+  }, [setSendAppointmentReminders, setSendConfirmationNotifications]);
 
   return (
     <div className={styles.settingsPage}>
+      <div className={styles.logoTopWrapper}>
+        <Link to="/Dashboard">
+          <img src="JDB-logo.png" alt="JBD Logo" className={styles.jbdLogoTop} />
+        </Link>
+      </div>
       <h1 className={styles.title}>Instellingen</h1>
       <div className={styles.content}>
         <div className={`${styles.settingsBlock} ${styles.leftBlock}`}>
@@ -118,8 +124,10 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
           ))}
         </div>
 
-        <div className={styles.logoContainer}>
-          <img src="/path/to/JBD-logo.png" alt="JBD Logo" className={styles.logo} />
+        <div className={styles.logoWrapper}>
+          <img src="UMCUtrechtLogo.png" alt="UMC Utrecht Logo" className={styles.umcLogo} />
+          <p className={styles.logoText}>Mede mogelijk gemaakt door</p>
+          <img src="JDB-logo.png" alt="JBD Logo" className={styles.jbdLogo} />
         </div>
 
         <div className={`${styles.settingsBlock} ${styles.rightBlock}`}>
@@ -158,8 +166,3 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
 };
 
 export default Settings;
-
-
-
-
-
