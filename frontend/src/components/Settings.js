@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from './Settings.module.css'; 
+import React, { useState, useEffect } from 'react';
+import styles from './Settings.module.css';
 import { Link } from 'react-router-dom';
 
 const leftSettings = [
@@ -89,13 +89,13 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
     const storedSendAppointmentReminders = localStorage.getItem('sendAppointmentReminders');
     const storedSendConfirmationNotifications = localStorage.getItem('sendConfirmationNotifications');
 
-    if (storedSendAppointmentReminders !== null) {
+    if (storedSendAppointmentReminders !== null && storedSendAppointmentReminders !== "undefined") {
       setSendAppointmentReminders(JSON.parse(storedSendAppointmentReminders));
     }
-    if (storedSendConfirmationNotifications !== null) {
+    if (storedSendConfirmationNotifications !== null && storedSendConfirmationNotifications !== "undefined") {
       setSendConfirmationNotifications(JSON.parse(storedSendConfirmationNotifications));
     }
-  }, []);
+  }, [setSendAppointmentReminders, setSendConfirmationNotifications]);
 
   return (
     <div className={styles.settingsPage}>
@@ -103,7 +103,6 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
         <Link to="/Dashboard">
           <img src="JDB-logo.png" alt="JBD Logo" className={styles.jbdLogoTop} />
         </Link>
-
       </div>
       <h1 className={styles.title}>Instellingen</h1>
       <div className={styles.content}>
@@ -167,8 +166,3 @@ const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentRemi
 };
 
 export default Settings;
-
-
-
-
-
