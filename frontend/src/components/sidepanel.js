@@ -82,26 +82,26 @@ const Sidepanel = ({ isOpen, onClose }) => {
     const scheduleReminder = (appointment, appointmentDate) => {
         const now = new Date();
         const appointmentTime = new Date(appointmentDate);
-    
+
         const timeUntilAppointment = appointmentTime - now;
         console.log('Time until appointment:', timeUntilAppointment);
-    
+
         const reminders = [
             { time: 24 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 24 uur: ' },
             { time: 12 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 12 uur: ' },
             { time: 1 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 1 uur: ' }
         ];
-    
+
         reminders.forEach(reminder => {
-            if (timeUntilAppointment < reminder.time) {
+            const reminderTime = timeUntilAppointment - reminder.time;
+            if (reminderTime > 0) {
                 setTimeout(() => {
                     console.log('Scheduling reminder:', reminder.message, `${appointment.name} om ${appointment.startTime}`);
                     notifyUser('Herinnering', `${reminder.message}${appointment.name} om ${appointment.startTime}`);
-                }, reminder.time - timeUntilAppointment);
+                }, reminderTime);
             }
         });
     };
-    
 
     const handleAddAppointment = () => {
         if (!appointmentName || !appointmentStartTime || !appointmentEndTime) {
@@ -137,7 +137,8 @@ const Sidepanel = ({ isOpen, onClose }) => {
 
         notifyUser('Afspraak toegevoegd', `Je hebt een nieuwe afspraak: ${appointment.name} om ${appointment.startTime}`);
 
-        const appointmentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), ...appointment.startTime.split(':'));
+        const [startHour, startMinute] = appointment.startTime.split(':');
+        const appointmentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), startHour, startMinute);
         scheduleReminder(appointment, appointmentDate);
     };
 
