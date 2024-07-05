@@ -1,21 +1,21 @@
-# For building React app
 FROM node:lts AS build
 
 # Set working directory
 WORKDIR /frontend
 
 # Copy package.json and package-lock.json (if available)
-COPY package.json /frontend/package.json
-COPY package-lock.json /frontend/package-lock.json
+COPY frontend/package.json /frontend/package.json
 
-# Install dependencies
 RUN npm install
 
 # Copy all files to the container
-COPY . /frontend
+COPY frontend /frontend
 
 # Build the React app
 RUN npm run build
+
+# Use a smaller image for serving the app
+FROM node:lts-slim AS serve
 
 # Install serve globally
 RUN npm install -g serve
@@ -25,4 +25,5 @@ COPY --from=build /frontend/build /frontend/build
 
 WORKDIR /frontend/build
 
-CMD ["serve", "-s", ".", "-l", "8080", "-p", "0.0.0.0"]
+# Set the command to serve the app
+CMD ["serve", "-s", ".", "-l", "tcp://0.0.0.0:8080"]

@@ -12,6 +12,7 @@ const Sidepanel = ({ isOpen, onClose }) => {
     const [appointmentName, setAppointmentName] = useState('');
     const [appointmentStartTime, setAppointmentStartTime] = useState('');
     const [appointmentEndTime, setAppointmentEndTime] = useState('');
+    const [notes, setNotes] = useState('');
 
     const months = [
         "January", "February", "March", "April", "May", "June",
@@ -60,7 +61,7 @@ const Sidepanel = ({ isOpen, onClose }) => {
     };
 
     const handleDayClick = useCallback((day) => {
-        setSelectedDate(new Date(year, month, day));
+        setSelectedDate(new Date(year, month, parseInt(day, 10)));
         setIsPopupOpen(true);
     }, [year, month]);
 
@@ -71,6 +72,36 @@ const Sidepanel = ({ isOpen, onClose }) => {
         setAppointmentStartTime('');
         setAppointmentEndTime('');
     };
+
+    const notifyUser = (title, body) => {
+        if (Notification.permission === 'granted') {
+            new Notification(title, { body });
+        }
+    };
+
+    const scheduleReminder = (appointment, appointmentDate) => {
+        const now = new Date();
+        const appointmentTime = new Date(appointmentDate);
+    
+        const timeUntilAppointment = appointmentTime - now;
+        console.log('Time until appointment:', timeUntilAppointment);
+    
+        const reminders = [
+            { time: 24 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 24 uur: ' },
+            { time: 12 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 12 uur: ' },
+            { time: 1 * 60 * 60 * 1000, message: 'Je hebt een afspraak binnen 1 uur: ' }
+        ];
+    
+        reminders.forEach(reminder => {
+            if (timeUntilAppointment < reminder.time) {
+                setTimeout(() => {
+                    console.log('Scheduling reminder:', reminder.message, `${appointment.name} om ${appointment.startTime}`);
+                    notifyUser('Herinnering', `${reminder.message}${appointment.name} om ${appointment.startTime}`);
+                }, reminder.time - timeUntilAppointment);
+            }
+        });
+    };
+    
 
     const handleAddAppointment = () => {
         if (!appointmentName || !appointmentStartTime || !appointmentEndTime) {
@@ -90,18 +121,31 @@ const Sidepanel = ({ isOpen, onClose }) => {
             newAppointments[dateKey] = [];
         }
 
-        newAppointments[dateKey].push({
+        const appointment = {
             name: appointmentName,
             startTime: appointmentStartTime,
             endTime: appointmentEndTime
-        });
+        };
+
+        newAppointments[dateKey].push(appointment);
 
         setAppointments(newAppointments);
         setAppointmentName('');
         setAppointmentStartTime('');
         setAppointmentEndTime('');
         closePopup();
+
+        notifyUser('Afspraak toegevoegd', `Je hebt een nieuwe afspraak: ${appointment.name} om ${appointment.startTime}`);
+
+        const appointmentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), ...appointment.startTime.split(':'));
+        scheduleReminder(appointment, appointmentDate);
     };
+
+    useEffect(() => {
+        if (Notification.permission !== 'granted') {
+            Notification.requestPermission();
+        }
+    }, []);
 
     useEffect(() => {
         document.querySelectorAll('.calendar-dates li').forEach(day => {
@@ -163,6 +207,15 @@ const Sidepanel = ({ isOpen, onClose }) => {
                     </div>
                 </div>
             )}
+
+            <div className='notes'>
+                <h2>Notities</h2>
+                <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Type hier je notities..."
+                />
+            </div>
         </div>
     );
 };

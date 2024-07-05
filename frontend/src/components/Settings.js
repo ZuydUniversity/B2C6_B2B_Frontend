@@ -9,7 +9,7 @@ const leftSettings = [
   'Via sms',
   'Aanvraag afspraak',
   'Aankomende afspraak',
-  'Bevestiging wijzigen',
+  'Bevestiging wijzigingen',
   'Bevestiging afspraak',
 ];
 
@@ -24,7 +24,7 @@ const rightSettingsInitial = [
   'Uitgevoerde updates dashboard',
 ];
 
-const Settings = () => {
+const Settings = ({ closePopup, sendAppointmentReminders, setSendAppointmentReminders, sendConfirmationNotifications, setSendConfirmationNotifications }) => {
   const [leftSettingsState, setLeftSettingsState] = useState(
     Array(leftSettings.length).fill(false)
   );
@@ -34,12 +34,22 @@ const Settings = () => {
   );
 
   const [rightSettings, setRightSettings] = useState(rightSettingsInitial);
+  const [volume, setVolume] = useState(50); // Volume state
 
   const handleToggleLeft = (index) => {
     const newSettingsState = [...leftSettingsState];
     newSettingsState[index] = !newSettingsState[index];
     setLeftSettingsState(newSettingsState);
-    console.log(`${leftSettings[index]} is ${newSettingsState[index] ? 'AAN' : 'UIT'}`);
+    console.log(`${leftSettings[index]} is ${newSettingsState[index] ? 'ON' : 'OFF'}`);
+
+    // Add logic to set state for sending reminders or notifications
+    if (index === 5) { // Aankomende afspraak
+      setSendAppointmentReminders(newSettingsState[index]);
+    }
+
+    if (index === 7) { // Bevestiging afspraak
+      setSendConfirmationNotifications(newSettingsState[index]);
+    }
   };
 
   const handleToggleRight = (index) => {
@@ -67,6 +77,25 @@ const Settings = () => {
     setRightSettings(newRightSettings);
     console.log(`${rightSettings[index]} is ${newSettingsState[index] ? 'AAN' : 'UIT'}`);
   };
+
+  // Save settings to localStorage
+  useEffect(() => {
+    localStorage.setItem('sendAppointmentReminders', JSON.stringify(sendAppointmentReminders));
+    localStorage.setItem('sendConfirmationNotifications', JSON.stringify(sendConfirmationNotifications));
+  }, [sendAppointmentReminders, sendConfirmationNotifications]);
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const storedSendAppointmentReminders = localStorage.getItem('sendAppointmentReminders');
+    const storedSendConfirmationNotifications = localStorage.getItem('sendConfirmationNotifications');
+
+    if (storedSendAppointmentReminders !== null) {
+      setSendAppointmentReminders(JSON.parse(storedSendAppointmentReminders));
+    }
+    if (storedSendConfirmationNotifications !== null) {
+      setSendConfirmationNotifications(JSON.parse(storedSendConfirmationNotifications));
+    }
+  }, []);
 
   return (
     <div className={styles.settingsPage}>
@@ -120,8 +149,26 @@ const Settings = () => {
           ))}
         </div>
       </div>
+      {rightSettingsState[1] && ( // Display volume slider if "Geluid" is on
+        <div className={styles.volumeControl}>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            className={styles.volumeSlider}
+            onChange={(e) => setVolume(e.target.value)}
+          />
+          <span className={styles.volumePercentage}>{volume}%</span>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Settings;
+
+
+
+
+
