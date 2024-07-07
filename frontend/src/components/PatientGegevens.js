@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './PatientGegevens.css'; 
+import './PatientGegevens.css';
 
 function App() {
     const [patient, setPatient] = useState({});
@@ -7,19 +7,36 @@ function App() {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        fetch('/api/patient')
-            .then(response => response.json())
-            .then(data => setPatient(data));
+        const dummyPatient = {
+            name: "Robin",
+            first_name: "Joep",
+            age: "10 jaar",
+            gender: "Man",
+            diagnosis: "Juveniele dermatomyositis",
+            contact: {
+                name: "John Doe",
+                phone: "0612345678",
+                email: "johndoe@mail.com"
+            }
+        };
+        setPatient(dummyPatient);
 
-        fetch('/api/medication')
-            .then(response => response.json())
-            .then(data => setMedication(data));
+        const dummyMedication = [
+            { name: "Enalaprimal", use: "2x p/dag 1 tablet" },
+            { name: "Omecat", use: "1x p/dag 1 capsule" },
+            { name: "Cellcept", use: "2x p/dag 1 tablet" },
+            { name: "Forlax", use: "1 p/dag 1 zakje" },
+            { name: "Acecort", use: "2x per dag 1 tablet" },
+            { name: "Calci chew d3", use: "1 p/dag 1 tablet" },
+            { name: "Amlodipine besilaat", use: "2x p/dag 1 tablet" },
+            { name: "Cotrimoxazol pch", use: "1 p/dag, 3x p/week 8ml" }
+        ];
+        setMedication(dummyMedication);
     }, []);
 
     const handleEdit = () => {
         setIsEditing(!isEditing);
         if (isEditing) {
-            // Save changes to backend
             fetch('/api/patient', {
                 method: 'PUT',
                 headers: {
@@ -73,7 +90,7 @@ function App() {
                 </button>
             </div>
 
-            <div className="section">
+            <div className="patient-section">
                 <div className="section-header">
                     <h2>Patiënt</h2>
                 </div>
@@ -85,30 +102,39 @@ function App() {
                         <p><strong>Geslacht:</strong> {isEditing ? <input type="text" name="gender" value={patient.gender || ''} onChange={handlePatientChange} /> : patient.gender}</p>
                         <p><strong>Diagnose:</strong> {isEditing ? <input type="text" name="diagnosis" value={patient.diagnosis || ''} onChange={handlePatientChange} /> : patient.diagnosis}</p>
                     </div>
-                    <div className="contact-info">
-                        <h2 className="sub-section-header">Contactpersoon</h2>
-                        <p><strong>Naam:</strong> {isEditing ? <input type="text" name="contact.name" value={patient.contact?.name || ''} onChange={handlePatientChange} /> : patient.contact?.name}</p>
-                        <p><strong>Telefoonnummer:</strong> {isEditing ? <input type="text" name="contact.phone" value={patient.contact?.phone || ''} onChange={handlePatientChange} /> : patient.contact?.phone}</p>
-                        <p><strong>E-mailadres:</strong> {isEditing ? <input type="text" name="contact.email" value={patient.contact?.email || ''} onChange={handlePatientChange} /> : patient.contact?.email}</p>
-                    </div>
                 </div>
             </div>
 
-            <div className="section medication-list">
-                <div className="section-header">
-                    <h2>Medicatie</h2>
+            <div className="content">
+                <div className="section contact-section">
+                    <div className="section-header">
+                        <h2>Contactpersoon</h2>
+                    </div>
+                    <div className="section-content">
+                        <div className="contact-info">
+                            <p><strong>Naam:</strong> {isEditing ? <input type="text" name="contact.name" value={patient.contact?.name || ''} onChange={handlePatientChange} /> : patient.contact?.name}</p>
+                            <p><strong>Telefoonnummer:</strong> {isEditing ? <input type="text" name="contact.phone" value={patient.contact?.phone || ''} onChange={handlePatientChange} /> : patient.contact?.phone}</p>
+                            <p><strong>E-mailadres:</strong> {isEditing ? <input type="text" name="contact.email" value={patient.contact?.email || ''} onChange={handlePatientChange} /> : patient.contact?.email}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="section-content medication-grid">
-                    {medication.length > 0 ? (
-                        medication.map((med, index) => (
-                            <div key={index} className="medication-item">
-                                <p><strong>Medicijn:</strong> {isEditing ? <input type="text" name="name" value={med.name} onChange={(e) => handleMedicationChange(index, e)} /> : med.name}</p>
-                                <p><strong>Gebruik:</strong> {isEditing ? <input type="text" name="use" value={med.use} onChange={(e) => handleMedicationChange(index, e)} /> : med.use}</p>
-                            </div>
-                        ))
-                    ) : (
-                        <p>Geen medicatiegegevens beschikbaar.</p>
-                    )}
+
+                <div className="section medication-list">
+                    <div className="section-header">
+                        <h2>Medicatie</h2>
+                    </div>
+                    <div className="section-content medication-grid">
+                        {medication.length > 0 ? (
+                            medication.map((med, index) => (
+                                <div key={index} className="medication-item">
+                                    <p><strong>Medicijn:</strong> {isEditing ? <input type="text" name="name" value={med.name} onChange={(e) => handleMedicationChange(index, e)} /> : med.name}</p>
+                                    <p><strong>Gebruik:</strong> {isEditing ? <input type="text" name="use" value={med.use} onChange={(e) => handleMedicationChange(index, e)} /> : med.use}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Geen medicatiegegevens beschikbaar.</p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,110 +1,93 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f7fa;
-}
-
+/* PatientGegevens.css */
 .container {
-    width: 80%;
-    margin: 50px auto;
+    font-family: Arial, sans-serif;
     padding: 20px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
 }
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 10px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 8px;
 }
 
     .header h1 {
+        font-size: 24px;
         margin: 0;
-        color: #333;
     }
 
-.edit-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px; /* Increased padding for larger button */
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px; /* Increased font size */
-}
-
-    .edit-button:hover {
+    .header .edit-button {
+        padding: 10px 20px;
+        font-size: 16px;
         background-color: #0056b3;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
     }
 
-.section {
-    margin-top: 20px;
+        .header .edit-button:hover {
+            background-color: #003f7f;
+        }
+
+.patient-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: calc(100% - 40px); /* Adjust width as needed */
 }
 
 .section-header {
     background-color: #007bff;
-    color: #fff;
+    color: white;
     padding: 10px;
-    border-radius: 5px 5px 0 0;
+    border-radius: 4px 4px 0 0;
 }
 
-.sub-section-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Add margin to separate header from content */
-}
-
-.section-content {
-    background-color: #e9f7ff;
-    padding: 20px;
-    border-radius: 0 0 5px 5px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start; /* Ensure items align to the top */
-}
-
-.patient-info {
-    flex: 1;
-    min-width: 200px;
-    margin-right: 20px;
-}
-
-.contact-info {
-    flex: 1;
-    min-width: 200px;
-}
-
-    .patient-info p, .contact-info p {
-        margin: 5px 0;
+    .section-header h2 {
+        font-size: 20px;
+        margin: 0;
     }
 
-.medication-list .medication-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+.section-content {
+    padding: 20px;
+    background-color: #e6f7ff;
+    border-radius: 0 0 4px 4px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+    margin-top: 20px; /* Add margin-top to separate from the header */
+}
+
+.section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex: 1 1 calc(50% - 20px); /* Adjust width to 50% for two columns */
+    display: flex;
+    flex-direction: column;
+}
+
+.medication-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns grid */
+    gap: 10px;
 }
 
 .medication-item {
-    background-color: #ffffff;
-    border: 1px solid #007bff;
     padding: 10px;
-    border-radius: 5px;
-}
-
-    .medication-item p {
-        margin: 5px 0;
-    }
-
-input[type="text"] {
+    background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 5px;
-    margin-left: 10px;
-    width: calc(100% - 20px);
 }
