@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import './Login.css';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [personeelsnummer, setPersoneelsnummer] = useState('');
@@ -61,10 +62,7 @@ const LoginForm = () => {
           <div className="form-actions">
             <a href="http://localhost:3000/">Wachtwoord vergeten?</a>
             <button type="submit">Log in</button>
-<<<<<<< Updated upstream
-=======
-             {/* <Link to="/dashboard"><button type="submit">Log in</button></Link> Later aanpassen om alleen met juiste gegevens in te loggen! */}
->>>>>>> Stashed changes
+            <Link to="/dashboard"><button type="submit">Log in</button></Link> {/* Later aanpassen om alleen met juiste gegevens in te loggen! */}
           </div>
           {message && <div className="message">{message}</div>}
           <div className="footer">

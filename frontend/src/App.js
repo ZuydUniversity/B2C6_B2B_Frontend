@@ -1,15 +1,9 @@
 // src/App.js
 
 import React from 'react';
-import Loginpage from './components/Login';
-<<<<<<< Updated upstream
 
-function App() {
-  return (
-    <div className="App">
-      <Loginpage />
-    </div>
-=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Loginpage from './components/Login';
 import Dashboard from './components/Dashboard';
 import PatientList from './components/PatientList';
 import Patients from './components/Patients';
@@ -34,7 +28,6 @@ function App() {
         </Routes>
       </div>
     </Router>
->>>>>>> Stashed changes
   );
 }
 
