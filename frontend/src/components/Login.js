@@ -61,13 +61,17 @@ const LoginForm = () => {
           <div className="form-actions">
             <a href="http://localhost:3000/">Wachtwoord vergeten?</a>
             <button type="submit">Log in</button>
+<<<<<<< Updated upstream
+=======
+             {/* <Link to="/dashboard"><button type="submit">Log in</button></Link> Later aanpassen om alleen met juiste gegevens in te loggen! */}
+>>>>>>> Stashed changes
           </div>
           {message && <div className="message">{message}</div>}
           <div className="footer">
             <p>Mede mogelijk gemaakt door</p>
             <hr className="DividerLine2" />
-            <img src="/UMCUtrechtLogo.png" alt="UMC Utrecht" />
-            <img src="/JDB logo.png" alt="JDB" />
+            <img src="/UMC-Utrecht-logo.png" alt="UMC Utrecht" />
+            <img src="/JDB-logo.png" alt="JDB" />
           </div>
         </form>
       </div>

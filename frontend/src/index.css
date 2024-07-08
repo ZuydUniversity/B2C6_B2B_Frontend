@@ -1,3 +1,27 @@
+/* Test for darkmode */
+body {
+  --color-background: #b8d9ff;
+  --color-foreground: #192041d0;
+
+  --image-grayscale: 0;
+  --image-opacity: 100%;
+}
+body.dark {
+  --color-background: #1f2023;
+  --color-foreground: #efefef;
+
+  --image-grayscale: 50%;
+  --image-opacity: 90%;
+}
+
+img,
+video {
+  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+}
+
+
+
+
 /* General styles */
 body {
   font-family: 'Arial', sans-serif;
@@ -11,11 +35,10 @@ body {
   width: 80%;
   margin-top: 0 auto;
   padding: 20px;
-  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #f8f9fa;
-}
+} 
 
 .patient-cell {
   /* styles for headers and cells */
